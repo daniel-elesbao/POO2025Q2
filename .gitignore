@@ -1,0 +1,45 @@
+# Build e binários
+[Bb]in/
+[Oo]bj/
+x64/
+*.exe
+*.dll
+*.pdb
+*.ilk
+*.log
+*.tlog
+*.lastbuildstate
+*.recipe
+*.ipch
+*.iobj
+*.pch
+
+# VSCode
+.vscode/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.db-shm
+*.VC.db-wal
+*.opensdf
+*.sdf
+
+# Arquivos de cache e estado
+*.cache
+*.db
+*.sqlite
+*.opendb
+*.json
+
+# Arquivos temporários
+*.tmp
+*.bak
+
+# Ignorar arquivos do macOS
+.DS_Store
+._*
