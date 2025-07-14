@@ -13,5 +13,6 @@ public class Universidade2
         System.out.print("Quanto tempo: ");
         tempo = scan.nextInt();
         System.out.println("Voce estuda na " + universidade + " ha " + tempo + " anos.");       
+    scan.close();
     }
 }

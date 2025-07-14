@@ -8,6 +8,7 @@ public class Consoantes2
         if (X == 'a' || X == 'e' || X == 'i' || X == 'o' || X == 'u' || 
             X == 'A' || X == 'E' || X == 'I' || X == 'O' || X == 'U')
         {
+            scan.close();
             return;
         }
         else

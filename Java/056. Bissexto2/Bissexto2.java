@@ -11,6 +11,7 @@ public class Bissexto2
         }
         else if (ano % 100 == 0)
         {
+            scan.close();
             return;
         }
         else if (ano % 4 == 0)

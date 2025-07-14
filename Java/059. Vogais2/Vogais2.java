@@ -12,6 +12,7 @@ public class Vogais2
         }
         else
         {
+            scan.close();
             return;
         }
         scan.close();   
