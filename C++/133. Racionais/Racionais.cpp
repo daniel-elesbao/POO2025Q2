@@ -1,12 +1,16 @@
 #include <iostream>
 
+long mdc(long a, long b) {
+    return b == 0 ? a : mdc(b, a % b);
+}
+
 struct tRacional
 {
-    int numerador;
-    int denominador;
+    long numerador;
+    long denominador;
 };
 
-struct tRacional racional(int numerador, int denominador)
+struct tRacional racional(long numerador, long denominador)
 {
     return {numerador, denominador};
 }
@@ -18,13 +22,15 @@ struct tRacional negativo(struct tRacional r2)
 
 struct tRacional reduz(struct tRacional r)
 {
-    int common_divisor;
-    for (common_divisor = r.numerador; common_divisor > 1; common_divisor--)
+    long dencom = mdc(abs(r.numerador), abs(r.denominador));
+    long num = r.numerador / dencom;
+    long den = r.denominador / dencom;
+    if (den < 0)
     {
-        if (r.numerador % common_divisor == 0 && r.denominador % common_divisor == 0)
-            break;
+        num = -num;
+        den = -den;
     }
-    return racional(r.numerador / common_divisor, r.denominador / common_divisor);
+    return racional(num, den);
 }
 
 struct tRacional soma(struct tRacional r1, struct tRacional r2)
