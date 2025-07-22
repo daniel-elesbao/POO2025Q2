@@ -3,7 +3,7 @@
 int main()
 {
     int T, A, B, xA, xB;
-    std::cin >> T, A, B;
+    std::cin >> T >> A >> B;
     xA = A, xB = B;
     if (A == T || A - B == T)
     {
@@ -30,11 +30,11 @@ int main()
         }
         if (xA < xB)
         {
-            std::cout << xA << std::endl;
+            std::cout << xB << std::endl;
         }
         else
         {
-            std::cout << xB << std::endl;
+            std::cout << xA << std::endl;
         }
         return 0;
     }
