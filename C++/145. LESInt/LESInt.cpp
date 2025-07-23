@@ -4,7 +4,6 @@ class Lista
     private:
             int *itens;
             int tamanho;
-            int posicao = 0;
     public:
             Lista();
             Lista(int);
@@ -36,6 +35,11 @@ void Lista::setItens(int i, int V)
     this->itens[i] = V;
 }
 
+int Lista::getItens(int i)
+{
+    return this->itens[i];
+}
+
 void Lista::inserir(int V)
 {
     for (int i = 0; i < this->tamanho; i++)
@@ -45,7 +49,20 @@ void Lista::inserir(int V)
             this->setItens(i, V);
             return;
         }
-    }
+        else if (this->itens[i] == V)
+        {
+            return;
+        }
+        else if (V < this->itens[i])
+        {
+            for (int j = this->tamanho-1; j > i; j--)
+            {
+                this->setItens(j, this->itens[j - 1]);
+            }
+            this->setItens(i, V);
+            return;
+        }
+    }     
 }
 
 void Lista::remover(int V)
@@ -54,8 +71,11 @@ void Lista::remover(int V)
     {
         if (itens[i] == V)
         {
-            this->setItens(i, 0);
-            return;
+            for (int j = i; j < this->tamanho-1; j++)
+            {
+                this->setItens(j, this->itens[j + 1]);
+            }
+            this->setItens(this->tamanho-1, 0);
         }
     }
 }
@@ -74,17 +94,42 @@ bool Lista::buscar(int V)
 
 void Lista::mostrar()
 {
+    if (vazia())
+    {
+        return;
+    }
+    bool primeiro = true;
     for (int i = 0; i < this->tamanho; i++)
     {
         if (this->itens[i] != 0)
         {
-            std::cout << ' ' << this->itens[i];
+            if (!primeiro)
+            std::cout << " " << this->itens[i];
+            primeiro = false;
         }
     }
     std::cout << std::endl;
 }
 
+bool Lista::vazia()
+{
+    for (int i = 0; i < this->tamanho; i++)
+    {
+        if (itens[i] != 0)
+            return false;
+    }
+    return true;
+}
 
+bool Lista::cheia()
+{
+    for (int i = 0; i < this->tamanho; i++)
+    {
+        if (itens[i] == 0)
+            return false;
+    }
+    return true;
+}
 
 int main()
 {
@@ -120,5 +165,6 @@ int main()
             break;
         }
     }
+    std::cout << std::endl;
     return 0;
 }
