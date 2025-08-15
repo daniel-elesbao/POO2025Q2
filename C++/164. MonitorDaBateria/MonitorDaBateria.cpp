@@ -87,38 +87,41 @@ int main()
 {
     int carga, nivel, count = 0;
     char lixo, barra;
-    std::string app;
+    std::string app, consumo;
     Bateria *bateria;
     std::cin >> carga >> lixo;
     bateria = new Bateria(carga);
-    while (std::cin >> app >> nivel) 
+    while (std::cin >> app >> nivel >> consumo) 
     {
         if (app == "charge")
         {
-            while (std::cin >> barra && barra == '|') 
+            for (int i = 0; i < consumo.size(); i++) 
             {
-                count++;
+                if (consumo[i] == '|') ++count;
                 if (count == nivel)
                 { 
                     ++(*bateria);
-                count = 0;
+                    count = 0;
                 }
             }
+        std::cout << app << ": " << bateria->getCarga() << "%" << std::endl;
+        count = 0;
         }
-        else if (bateria->getCarga() == 0) std::cout << "nao executou por falta de bateria.";
+        else if (bateria->getCarga() == 0) std::cout << app << " nao executou por falta de bateria." << std::endl;
         else
         {
-            while (std::cin >> barra && barra == '|') 
+            for (int i = 0; i < consumo.size(); i++) 
             {
-                count++;
+                if (consumo[i] == '|') ++count;
                 if (count == nivel)
                 { 
                     --(*bateria);
                     count = 0;
                 }
             }  
-        }
         std::cout << app << ": " << bateria->getCarga() << "%" << std::endl;
+        count = 0;
+        }
     }
     std::cout << "carga final da bateria: " << bateria->getCarga() << "%" << std::endl;
     return 0;

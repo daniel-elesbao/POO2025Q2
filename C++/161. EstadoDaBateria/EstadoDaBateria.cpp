@@ -13,7 +13,7 @@ class Bateria
         void mostrar();
         Bateria operator++();
         Bateria operator--();
-        Bateria operator()();
+        Bateria operator=(int carga);
 };
 
 Bateria::Bateria() 
@@ -63,9 +63,10 @@ Bateria Bateria::operator--()
     return *this;
 }
 
-Bateria Bateria::operator()() 
+Bateria Bateria::operator=(int carga) 
 {
-    if (this->valida()) {
+    this->setCarga(carga);
+        if (this->valida()) {
         if (this->getCarga() == 0) std::cout << "0%: bateria vazia.";
         else if (this->getCarga() == 100) std::cout << "100%: bateria cheia.";
         else if (this->getCarga() < 6) std::cout << this->getCarga() << "%: bateria quase vazia.";
@@ -87,11 +88,10 @@ int main()
 {
     int carga;
     char lixo;
-    Bateria *bateria;
+    Bateria *bateria = new Bateria();
     while (std::cin >> carga >> lixo) 
     {
-        bateria = new Bateria(carga);
-        (*bateria)();
+        *bateria = carga;
     }
     return 0;
 }
