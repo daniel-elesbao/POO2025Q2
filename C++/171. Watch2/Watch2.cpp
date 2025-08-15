@@ -176,11 +176,22 @@ void Watch::show()
 int main()
 {
     std::string entrada;
-    Watch *watch = new Watch();
+    Watch *watch2 = new Watch();
     while (std::cin >> entrada) 
     {
-        if (entrada == "tic") ++(*watch);
+        if (entrada == "tic") 
+        {
+            ++(*watch2);
+        } 
+        else if (entrada == "tac") 
+        {
+            ~(*watch2);
+        } 
+        else if (entrada == "toc") 
+        {
+            !(*watch2);
+        }
     }
-    watch->show();
+    watch2->show();
     return 0;
 }

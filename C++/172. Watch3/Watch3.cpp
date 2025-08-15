@@ -127,10 +127,7 @@ class Relogio3: public Relogio2
         Relogio3(int, int, int);
         Relogio3();
 };
-Relogio3::Relogio3()
-{
-    Cronometro();
-}
+Relogio3::Relogio3() : Relogio2() {}
 Relogio3::Relogio3(int hora, int minuto, int segundo) 
 {
     this->setHora(hora);
@@ -140,8 +137,13 @@ Relogio3::Relogio3(int hora, int minuto, int segundo)
 class Watch: public Relogio3
 {
     public:
+        Watch(int hora, int minuto, int segundo);
+        Watch();
         void show();
 };
+Watch::Watch(int hora, int minuto, int segundo)
+    : Relogio3(hora, minuto, segundo) {}
+Watch::Watch() : Relogio3() {}
 void Watch::show()
 {
     if (this->getHora() == 0 )
@@ -175,12 +177,25 @@ void Watch::show()
 }
 int main()
 {
+    int hora, minuto, segundo;
     std::string entrada;
-    Watch *watch = new Watch();
+    std::cin >> hora >> minuto >> segundo;
+    Watch *watch3 = new Watch(hora, minuto, segundo);
     while (std::cin >> entrada) 
     {
-        if (entrada == "tic") ++(*watch);
+        if (entrada == "tic") 
+        {
+            ++(*watch3);
+        } 
+        else if (entrada == "tac") 
+        {
+            ~(*watch3);
+        } 
+        else if (entrada == "toc") 
+        {
+            !(*watch3);
+        }
     }
-    watch->show();
-    return 0;
+    watch3->show();
+    return 0; 
 }
